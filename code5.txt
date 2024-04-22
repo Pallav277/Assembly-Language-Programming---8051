@@ -1,0 +1,17 @@
+Below is the Assembly Language Program (ALP) for the 8051 microcontroller to multiply 96h and 38h and store the 16-bit result in two consecutive memory locations, with memory location 30h holding the lower byte of the result
+
+
+ORG 00H   ; Starting address of the program
+
+MOV A, #96H      ; Load the multiplier (96h) into accumulator A
+MOV B, #38H      ; Load the multiplicand (38h) into register B
+
+MUL AB           ; Multiply the contents of A and B, result in A (low byte) and B (high byte)
+
+MOV R1, #30H     ; Load the address of memory location 30h into register R1
+MOV @R1, A       ; Store the lower byte of the result in memory location 30h
+
+INC R1           ; Increment the address to store the higher byte
+MOV @R1, B       ; Store the higher byte of the result in memory location 31h
+
+END   ; End of the program

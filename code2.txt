@@ -1,0 +1,14 @@
+Assembly Language Program (ALP) for the 8051 microcontroller to add two numbers (96h and 38h) and store the result in register R0 as well as in memory location 40h
+
+
+ORG 00H   ; Starting address of the program
+
+MOV A, #96H   ; Load the first number (96h) into accumulator A
+ADD A, #38H   ; Add the second number (38h) to accumulator A
+
+MOV R0, A     ; Move the result from accumulator A to register R0
+
+MOV R1, #40H  ; Load the address of memory location 40h into register R1
+MOV @R1, A    ; Store the result from accumulator A into memory location 40h
+
+END   ; End of the program

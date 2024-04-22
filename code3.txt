@@ -1,0 +1,26 @@
+To add two 16-bit numbers (AA12h and B348h) and store the 16-bit result in memory location 39h, we'll need to use the accumulator for arithmetic operations and register pairs for handling 16-bit data. Below is the Assembly Language Program (ALP) for the 8051 microcontroller
+
+
+ORG 00H   ; Starting address of the program
+
+MOV R2, #AAH   ; Load the most significant byte of the first number (AA12h) into register R2
+MOV R3, #12H   ; Load the least significant byte of the first number (AA12h) into register R3
+
+MOV R4, #B3H   ; Load the most significant byte of the second number (B348h) into register R4
+MOV R5, #48H   ; Load the least significant byte of the second number (B348h) into register R5
+
+ADD A, R3   ; Add the least significant bytes of both numbers to accumulator A
+MOV R6, A   ; Move the result to register R6
+
+ADDC A, R5  ; Add the most significant bytes along with carry to accumulator A
+MOV R7, A   ; Move the result to register R7
+
+ADD A, R2   ; Add the carry to the previous addition
+MOV R6, A   ; Move the result to register R6
+
+MOV R1, #39H  ; Load the address of memory location 39h into register R1
+MOV @R1, R7   ; Store the most significant byte of the result in memory location 39h
+INC R1        ; Increment the address to store the least significant byte
+MOV @R1, R6   ; Store the least significant byte of the result in memory location 39h+1
+
+END   ; End of the program

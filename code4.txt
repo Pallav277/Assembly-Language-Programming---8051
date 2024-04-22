@@ -1,0 +1,12 @@
+Assembly Language Program (ALP) for the 8051 microcontroller to subtract 38h from 96h and store the result at memory location 44h
+
+
+ORG 00H   ; Starting address of the program
+
+MOV A, #96H   ; Load the first number (96h) into accumulator A
+SUBB A, #38H  ; Subtract the second number (38h) from accumulator A
+
+MOV R1, #44H  ; Load the address of memory location 44h into register R1
+MOV @R1, A    ; Store the result from accumulator A into memory location 44h
+
+END   ; End of the program

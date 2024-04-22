@@ -1,0 +1,36 @@
+Assembly Language Program (ALP) for the 8051 microcontroller to add two BCD (Binary Coded Decimal) numbers stored at memory locations 30h and 31h, and store the BCD result in the next memory location
+
+
+ORG 00H   ; Starting address of the program
+
+MOV DPTR, #30H   ; Load address of memory location 30h into DPTR
+MOVX A, @DPTR    ; Move content of memory location 30h to accumulator A
+
+ADD A, #00H      ; Adjust A to unpacked BCD format
+
+MOV DPTR, #31H   ; Load address of memory location 31h into DPTR
+MOVX B, @DPTR    ; Move content of memory location 31h to register B
+
+ADD A, B         ; Add the contents of A and B
+
+MOV R1, A        ; Move the result to register R1
+
+MOV A, #00H      ; Clear accumulator A
+
+MOV R0, #0FH     ; Load the mask to clear upper nibble
+ANL A, R0        ; Clear upper nibble of result in accumulator A
+
+MOV R2, A        ; Move the result to register R2
+
+MOV A, R1        ; Move the result from register R1 to accumulator A
+
+ANL A, #0FH      ; Mask the lower nibble of result
+
+ADD A, R2        ; Add the result from register R2 (cleared upper nibble)
+
+MOV R3, A        ; Move the result to register R3
+
+MOV DPTR, #32H   ; Load address of memory location 32h into DPTR
+MOVX @DPTR, R3   ; Store the BCD result in the next memory location
+
+END   ; End of the program

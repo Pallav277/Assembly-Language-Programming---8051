@@ -1,0 +1,13 @@
+Assembly Language Program (ALP) for the 8051 microcontroller to perform a logical NAND operation for the contents stored in registers R0 and R1 and store the result in register R3
+
+
+ORG 00H   ; Starting address of the program
+
+MOV A, R0   ; Move the content of register R0 to accumulator A
+ANL A, R1   ; Perform logical AND operation with the content of register R1
+
+CPL A       ; Complement the bits in accumulator A to perform NAND operation
+
+MOV R3, A   ; Move the result from accumulator A to register R3
+
+END   ; End of the program

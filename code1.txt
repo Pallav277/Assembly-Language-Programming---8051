@@ -1,0 +1,18 @@
+Assembly Language Program (ALP) for the 8051 microcontroller to exchange the contents of memory locations 30h and 40h
+
+
+ORG 00H   ; Starting address of the program
+
+MOV DPTR, #30H   ; Load address of memory location 30h into DPTR
+MOVX A, @DPTR    ; Move content of memory location 30h to accumulator A
+
+MOV DPTR, #40H   ; Load address of memory location 40h into DPTR
+MOVX R0, @DPTR   ; Move content of memory location 40h to register R0
+
+MOV DPTR, #30H   ; Load address of memory location 30h into DPTR
+MOVX @DPTR, R0   ; Move content of register R0 to memory location 30h
+
+MOV DPTR, #40H   ; Load address of memory location 40h into DPTR
+MOVX @DPTR, A    ; Move content of accumulator A to memory location 40h
+
+END   ; End of the program
